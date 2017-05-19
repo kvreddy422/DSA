@@ -15,7 +15,7 @@ void printList(struct node *node)
 {
   while(node)
     {
-       printf("%d",node->data);
+       printf("%d ",node->data);
        node=node->next;
     }
 }
