@@ -5,6 +5,12 @@ struct node{
   struct node *next;
 };
 
+void push(struct node** head_ref, int new_data){
+  struct node* new_node = (struct node*)malloc(sizeof(struct node));
+  new_node->data=new_data;
+  new_node->next=(*head_ref);
+  (*head_ref) = new_node;
+}
 void insertAfter(struct node* prev_node, int new_data){
   struct node* next_node = (struct node*) malloc(sizeof(struct node));     
 
@@ -29,6 +35,7 @@ void printList (struct node *node){
 
 int main(){
   struct node* head = NULL;
+  push(&head,4);
   insertAfter(head,7);
   printf("The list is\n");
   printList(head);
