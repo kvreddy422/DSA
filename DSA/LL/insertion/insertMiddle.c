@@ -12,17 +12,17 @@ void push(struct node** head_ref, int new_data){
   (*head_ref) = new_node;
 }
 void insertAfter(struct node* prev_node, int new_data){
-  struct node* next_node = (struct node*) malloc(sizeof(struct node));     
+  struct node* new_node = (struct node*) malloc(sizeof(struct node));     
 
   if(prev_node==NULL){
-    next_node->next=NULL;
-    next_node->data=new_data;
+    new_node->next=NULL;
+    new_node->data=new_data;
     return;
   }
   struct node* temp_node= prev_node->next;  
-  prev_node->next=next_node;
-  prev_node->data=new_data;
-  next_node->next=temp_node;
+  prev_node->next=new_node;
+  new_node->data=new_data; 
+  new_node->next=temp_node;
   return;
 }
 
@@ -37,11 +37,11 @@ int main(){
   struct node* head = NULL;
   push(&head,4);
   insertAfter(head,7);
-  printf("The list is\n");
+  printf("\nThe list is\n");
   printList(head);
   insertAfter(head,9);
   insertAfter(head,1);
-  printf("Updated list is\n");
+  printf("\nUpdated list is\n");
   printList(head);
   return 0;
 }
