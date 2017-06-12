@@ -14,6 +14,8 @@ int main()
   insertBegin(&head,7);
   // inserts 5 at the begining ; LL = 5->7->NULL
   insertBegin(&head,5);
+  insertBegin(&head,10);
+  insertBegin(&head,50);
   // inserts 12 at end; LL = 5->7->12->NULL
   //insertEnd(&head,12); 
   //insertEnd(&head,4); // 5->7->12->4->NULL 
@@ -32,7 +34,7 @@ void insertBegin(struct node **head, int data)
   struct node* new_node= (struct node*)malloc(sizeof(struct node));
   
   new_node->data=data;
-  new_node->next=NULL;
+  new_node->next=(*head);
   (*head)=new_node;
 
 }
@@ -47,5 +49,4 @@ void printList(struct node *head)
   head=head->next;
   }
   printf("\n");
-  
 }
