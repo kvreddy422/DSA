@@ -41,12 +41,11 @@ void insertBegin(struct node **head, int data)
 
 void printList(struct node *head)
 {
-  if(head!=NULL)
-    printf("%d->",head->data);
   while(head->next!=NULL)
   {
   printf("%d->",head->data);
   head=head->next;
   }
+  printf("%d",head->data);
   printf("\n");
 }
