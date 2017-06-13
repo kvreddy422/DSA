@@ -55,14 +55,19 @@ void insertMiddle(struct node *head,int data,int pos_data,int flag)
   new_node->data=data;
   if(flag==0)
     {
-        int i=1;
+        int i=0;
 	while(head->next!=NULL && i<=pos_data)
 		{
 			head=head->next;
 			i++;
 		}
+        if(pos_data>i+1)
+		printf("Cannot insert %d at the middle\n",data);
+        else
+	{  
 	new_node->next=head->next;
-        head->next=new_node;    		
+        head->next=new_node;
+	}    		
     }
 }
 void printList(struct node *head)
