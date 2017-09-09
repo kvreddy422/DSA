@@ -35,13 +35,14 @@ void Delete_Node(struct node **head, int position)
 	}
 	
 	int i =0;
-	for(i;*head->next!=NULL && i<position-1;i++)
-	{
-		*head=*(head)->next;
-		temp_node->next=*(head)->next;
-		free(*head);
-	}
-	
+	for(i;i<position-1 && temp_node!=NULL; i++)
+		temp_node=temp_node->next;
+	// Edge Case  
+	if(temp_node==NULL || temp_node->next==NULL)
+		return;
+	struct node *tempo = temp_node->next->next;
+	free(temp_node->next);
+	temp_node->next=tempo;	
 }
 void Print_List(struct node *head)
 {
@@ -61,7 +62,7 @@ int main()
 	Add_Node(&head,30);
 	Add_Node(&head,40);
 	Add_Node(&head,50);
- 	Delete_Node(&head,1);	
+ 	Delete_Node(&head,6);	
 	Print_List(head);
 }
 
