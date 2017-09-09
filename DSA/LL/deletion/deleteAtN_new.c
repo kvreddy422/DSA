@@ -33,13 +33,14 @@ void Delete_Node(struct node **head, int position)
 		free(temp_node);
 		return;
 	}
-	int i=0;	
-//	for(i=0; i<position || *head->next==NULL ; i++ )
-//	{
-		
-//	}
 	
-	
+	int i =0;
+	for(i;*head->next!=NULL && i<position-1;i++)
+	{
+		*head=*(head)->next;
+		temp_node->next=*(head)->next;
+		free(*head);
+	}
 	
 }
 void Print_List(struct node *head)
@@ -60,7 +61,7 @@ int main()
 	Add_Node(&head,30);
 	Add_Node(&head,40);
 	Add_Node(&head,50);
-	
+ 	Delete_Node(&head,1);	
 	Print_List(head);
 }
 
