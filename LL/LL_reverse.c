@@ -21,6 +21,7 @@ static void reverse(struct Node** head_ref)
 		current->next=prev;
 		prev=current;
 		current=next;
+	
 	}
 }
  
