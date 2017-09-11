@@ -19,10 +19,10 @@ int main()
   insertEnd(head,12); 
   insertEnd(head,4); // 5->7->12->4->NULL 
   // insertMiddle(a,b,c,d) a= address of head; b= data; c=postion; d= flag flag (0=postion from head; 1= check for that data and insert after that node) 5->
-  insertMiddle(head,21,3,0); // 5->7->12->21->4->NULL
-  insertMiddle(head,22,10,0); // Not possible
+  insertMiddle(head,21,1,0); // 5->7->12->21->4->NULL
+ // insertMiddle(head,22,10,0); // Not possible
   //insertMiddle(&head,23,1,0); // 5->23->7->12->21->4->NULL
-  //insertMiddle(&head,24,23,1); // Placed after node with data 23
+  //insertMiddle(&head,24,21,1); // Placed after node with data 23
   
   printList(head);
   return 0;  
@@ -65,10 +65,29 @@ void insertMiddle(struct node *head,int data,int pos_data,int flag)
 		printf("Cannot insert %d at the middle\n",data);
         else
 	{  
-	new_node->next=head->next;
-        head->next=new_node;
+		new_node->next=head->next;
+       		head->next=new_node;
 	}    		
     }
+  else
+    {
+	while(head->next!=NULL)
+	{
+		if(head->data==data)
+		{
+			break;
+		}
+		else
+		head=head->next;
+	}
+	if(head->data==data)
+	{
+		new_node->next=head->next;
+		head->next=new_node;
+	}
+	else
+		printf("Node with the given data not found \n");				
+    }		
 }
 void printList(struct node *head)
 {
