@@ -23,6 +23,7 @@ static void reverse(struct Node** head_ref)
 		current=next;
 	
 	}
+	*head_ref = prev; // This ensures that we point to the new header postion
 }
  
 /* Function to push a node */
