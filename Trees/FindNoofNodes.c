@@ -21,7 +21,7 @@ void findNodes(struct node* root, int* max)
 	return;
 	else
 	{
-		*max++;
+		*max=*max+1;//*max++; This doesn't work may be becaz *max++ increments it's address instead of the value
 		findNodes(root->left,max);
 		findNodes(root->right,max);
 	
