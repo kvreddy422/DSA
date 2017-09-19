@@ -21,8 +21,8 @@ void findMax(struct node* root, int* max)
 	return;
 	else
 	{
-		if(root->data>max)
-		max=root->data;
+		if(root->data>*max) // max is a pointer and *max is the value of the pointer
+		*max=root->data;
 		findMax(root->left,max);
 		findMax(root->right,max);
 	
