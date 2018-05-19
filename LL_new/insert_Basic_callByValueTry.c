@@ -58,10 +58,11 @@ void printList(struct node *head)
 int main()
 {
 	struct node *head = NULL;
+	insertAtBeginning(head,7);	
 	head=append(head,6);
 	head=append(head,5);
 	head=append(head,4);
-	insertAtBeginning(head,7);
+	
 	printList(head);
 	return 0;	
 }
