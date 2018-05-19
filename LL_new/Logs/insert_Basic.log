@@ -1,0 +1,36 @@
+insert_Basic.c:8:24: error: expected declaration specifiers or ‘...’ before ‘*’ token
+ void insertAtBeginning(*head, int data){
+                        ^
+insert_Basic.c:17:20: warning: ‘struct Node’ declared inside parameter list will not be visible outside of this definition or declaration
+ void append(struct Node** head_ref, int new_data)
+                    ^~~~
+insert_Basic.c: In function ‘append’:
+insert_Basic.c:20:44: warning: implicit declaration of function ‘malloc’ [-Wimplicit-function-declaration]
+     struct node* new_node = (struct Node*) malloc(sizeof(struct Node));
+                                            ^~~~~~
+insert_Basic.c:20:44: warning: incompatible implicit declaration of built-in function ‘malloc’
+insert_Basic.c:20:44: note: include ‘<stdlib.h>’ or provide a declaration of ‘malloc’
+insert_Basic.c:20:58: error: invalid application of ‘sizeof’ to incomplete type ‘struct Node’
+     struct node* new_node = (struct Node*) malloc(sizeof(struct Node));
+                                                          ^~~~~~
+insert_Basic.c:22:25: warning: initialization from incompatible pointer type [-Wincompatible-pointer-types]
+     struct node *last = *head_ref;  /* used in step 5*/
+                         ^
+insert_Basic.c:34:18: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+        *head_ref = new_node;
+                  ^
+insert_Basic.c: In function ‘printList’:
+insert_Basic.c:49:17: error: ‘node’ undeclared (first use in this function)
+  printf(" %d ", node->data);
+                 ^~~~
+insert_Basic.c:49:17: note: each undeclared identifier is reported only once for each function it appears in
+insert_Basic.c: In function ‘main’:
+insert_Basic.c:56:9: warning: passing argument 1 of ‘append’ from incompatible pointer type [-Wincompatible-pointer-types]
+  append(&head,6);
+         ^
+insert_Basic.c:17:6: note: expected ‘struct Node **’ but argument is of type ‘struct node **’
+ void append(struct Node** head_ref, int new_data)
+      ^~~~~~
+insert_Basic.c:57:2: warning: implicit declaration of function ‘insertAtBeginning’ [-Wimplicit-function-declaration]
+  insertAtBeginning(&head,7);
+  ^~~~~~~~~~~~~~~~~
