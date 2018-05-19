@@ -14,12 +14,12 @@ void insertAtBeginning(struct node *head, int data){
 }
 
 // Copied
-void append(struct Node** head_ref, int new_data)
+struct node * append(struct Node* head_ref, int new_data)
 {
     /* 1. allocate node */
     struct node *new_node = (struct node*) malloc(sizeof(struct node));
  
-    struct node *last = *head_ref;  /* used in step 5*/
+    struct node *last = head_ref;  /* used in step 5*/
  
     /* 2. put in the data  */
     new_node->data  = new_data;
@@ -29,10 +29,10 @@ void append(struct Node** head_ref, int new_data)
     new_node->next = NULL;
  
     /* 4. If the Linked List is empty, then make the new node as head */
-    if (*head_ref == NULL)
+    if (head_ref == NULL)
     {
-       *head_ref = new_node;
-       return;
+       head_ref = new_node;
+       return head_ref;
     }
  
     /* 5. Else traverse till the last node */
@@ -41,7 +41,7 @@ void append(struct Node** head_ref, int new_data)
  
     /* 6. Change the next of last node */
     last->next = new_node;
-    return;
+    return head_ref;
 }
 
 void printList(struct node *head)
@@ -58,7 +58,9 @@ void printList(struct node *head)
 int main()
 {
 	struct node *head = NULL;
-	append(&head,6);
+	head=append(head,6);
+	head=append(head,5);
+	head=append(head,4);
 	insertAtBeginning(head,7);
 	printList(head);
 	return 0;	
