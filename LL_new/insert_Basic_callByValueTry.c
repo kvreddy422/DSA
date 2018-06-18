@@ -5,11 +5,12 @@ struct node{
 	struct node *next;		
 };
 
-void insertAtBeginning(struct node *head, int data){
+struct node * insertAtBeginning(struct node *head, int data){
 	struct node *newNode = (struct node*)malloc(sizeof(struct node));
 	newNode->data=data;
 	newNode->next=head->next;
 	head->next=newNode; 
+	return head;
 	
 }
 
@@ -58,7 +59,7 @@ void printList(struct node *head)
 int main()
 {
 	struct node *head = NULL;
-	insertAtBeginning(head,7);	
+	head=insertAtBeginning(head,7);	
 	head=append(head,6);
 	head=append(head,5);
 	head=append(head,4);
