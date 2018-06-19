@@ -13,14 +13,18 @@ struct node
 
 struct node *reverseLL (struct node *head)
 {
-	while(head!=NULL)
+	struct node *temp=NULL;	
+	while(head->next!=NULL)
 	{
-		struct node *temp=NULL;
-		head=head->next;
-		temp=reverseLL (head);
-		head->next=temp;
-		return head ;
+		temp=head->next;
+		head->next=NULL;
+		struct node *rev=reverseLL (temp);
+		temp->next=head;
+		printf ("Rev data is %d \t",rev->data);
+		return rev ;
 	}
+		printf ("Head data is %d \t",head->data);
+		return head; // The beauty of this code is the way it store the head value from last to first. That is head when head->next == NULl and rev when head->nex!= NULL are always the same
 }
 
 void insertBegin(struct node **head, int data)
