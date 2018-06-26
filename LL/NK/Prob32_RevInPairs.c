@@ -9,10 +9,10 @@ struct node
 
 
 // Reverse the Linked List; ex: 1->2->3->4->X turns out to be 2->1->4->3->X;
+/* List before Revesing10->5->7->22->33->12->4
 
-/*List before Revesing10->5->7->12->4
-
- List after Revesing5->10->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12*/
+ List after Revesing5->10->22->7->12->33
+*/
 struct node *ReversePairWise(struct node *head){
 	struct node *a,*b,*c,*headStore;
 	a=head;
@@ -22,12 +22,7 @@ struct node *ReversePairWise(struct node *head){
 		b=a->next;
 		c=b->next;
 		b->next=a;
-		if(c->next)
-			a->next=c->next;
-		else{			
-			c->next=NULL;
-			return headStore; // Loop is happening here. If it finds NULL the code your write form a loop;
-		    }	
+		a->next=c->next;
 		a=c;
 	}
 	return headStore;
@@ -116,6 +111,8 @@ int main()
   insertBegin(&head,5);
   insertBegin(&head,10);
   // inserts 12 at end; LL = 5->7->12->NULL
+  insertEnd(head,22); 
+  insertEnd(head,33);
   insertEnd(head,12); 
   insertEnd(head,4); // 5->7->12->4->NULL 
   // insertMiddle(a,b,c,d) a= address of head; b= data; c=postion; d= flag flag (0=postion from head; 1= check for that data and insert after that node) 5->
