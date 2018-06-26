@@ -15,7 +15,7 @@ struct node *ReversePairWise(struct node *head){
 	a=head;
 	if(a->next)
 		headStore=a->next;
-	while(a || a->next){
+	while(a->next){
 		b=a->next;
 		c=b->next;
 		b->next=a;
@@ -103,22 +103,22 @@ void printList(struct node *head)
 int main()
 {
   struct node *head = NULL;
-  // inserts 7 at the begining ; LL = 7->NULL 
-  insertBegin(&head,4);
+  insertBegin(&head,7);
   // inserts 5 at the begining ; LL = 5->7->NULL
-  insertBegin(&head,3);
-  insertBegin(&head,2);
-  insertBegin(&head,1);
+  insertBegin(&head,5);
+  insertBegin(&head,10);
   // inserts 12 at end; LL = 5->7->12->NULL
-  //insertBegin(&head,12); 
-  //insertBegin(&head,4); // 5->7->12->4->NULL 
+  insertEnd(head,12); 
+  insertEnd(head,4); // 5->7->12->4->NULL 
   // insertMiddle(a,b,c,d) a= address of head; b= data; c=postion; d= flag flag (0=postion from head; 1= check for that data and insert after that node) 5->
-  //insertBegin(&head,21); // 5->7->12->21->4->NULL
+  //insertMiddle(head,21,1,0); // 5->7->12->21->4->NULL
  // insertMiddle(head,22,10,0); // Not possible
   //insertMiddle(&head,23,1,0); // 5->23->7->12->21->4->NULL
   //insertMiddle(&head,24,21,1); // Placed after node with data 23
   
-  head=ReversePairWise(head);
+  printf("\n List before Revesing");	
+  printList(head);
+  head=ReversePairWise(head);  	
   //ReversePairWise(head);
   printf("\n List after Revesing");	
   printList(head);		
