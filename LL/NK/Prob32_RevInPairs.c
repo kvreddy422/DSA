@@ -22,7 +22,10 @@ struct node *ReversePairWise(struct node *head){
 		b=a->next;
 		c=b->next;
 		b->next=a;
-		a->next=c->next;
+		if(c->next)
+			a->next=c->next;
+		else
+			a->next=c;
 		a=c;
 	}
 	return headStore;
@@ -113,7 +116,9 @@ int main()
   // inserts 12 at end; LL = 5->7->12->NULL
   insertEnd(head,22); 
   insertEnd(head,33);
-  insertEnd(head,12); 
+  insertEnd(head,12);
+  insertEnd(head,44);
+  insertEnd(head,55);	 
   insertEnd(head,4); // 5->7->12->4->NULL 
   // insertMiddle(a,b,c,d) a= address of head; b= data; c=postion; d= flag flag (0=postion from head; 1= check for that data and insert after that node) 5->
   //insertMiddle(head,21,1,0); // 5->7->12->21->4->NULL
