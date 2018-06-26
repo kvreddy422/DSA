@@ -26,7 +26,7 @@ struct node *ReversePairWise(struct node *head){
 			a->next=c->next;
 		else{			
 			c->next=NULL;
-			return headStore;
+			return headStore; // Loop is happening here. If it finds NULL the code your write form a loop;
 		    }	
 		a=c;
 	}
