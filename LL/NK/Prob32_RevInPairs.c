@@ -10,6 +10,9 @@ struct node
 
 // Reverse the Linked List; ex: 1->2->3->4->X turns out to be 2->1->4->3->X;
 
+/*List before Revesing10->5->7->12->4
+
+ List after Revesing5->10->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12->7->12*/
 struct node *ReversePairWise(struct node *head){
 	struct node *a,*b,*c,*headStore;
 	a=head;
@@ -19,7 +22,12 @@ struct node *ReversePairWise(struct node *head){
 		b=a->next;
 		c=b->next;
 		b->next=a;
-		a->next=c;
+		if(c->next)
+			a->next=c->next;
+		else{			
+			c->next=NULL;
+			return headStore;
+		    }	
 		a=c;
 	}
 	return headStore;
