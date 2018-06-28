@@ -15,15 +15,6 @@ struct node *ReversePairWise(struct node *head){
 	struct node *a=NULL,*b=NULL,*out=NULL,*headStore=NULL;
 	headStore=head;
 	while (head){
-		/*if(head->next==NULL || head->next->next==NULL ){
-			if(head->next==NULL){
-				return head;			
-			}
-			a=head->next;
-			a->next=head;
-			head->next=NULL;
-			return a;		
-		}*/
 			if(head->next)
 				head=head->next->next;
 			else return head;
