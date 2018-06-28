@@ -8,10 +8,11 @@ struct node
 };
 
 
-// Reverse the Linked List; ex: 1->2->3->4->X turns out to be 2->1->4->3->X;
+// Reverse the Linked List; ex: 1->2->3->4->X turns out to be 2->1->4->3->X; 
+/*This Program might not work.The reason is that it you have given head=head->next->next before calling the recusion function. That means, you can't access the first 2 elements no matter what. Even if you put some conditional statements to access it, the code runs in every reursion*/
 
 struct node *ReversePairWise(struct node *head){
-	struct node *a,*b,*out,*headStore;
+	struct node *a=NULL,*b=NULL,*out=NULL,*headStore=NULL;
 	headStore=head;
 	while (head){
 		/*if(head->next==NULL || head->next->next==NULL ){
@@ -109,7 +110,7 @@ void printList(struct node *head)
   struct node *headStore=head;
   if(head==NULL){
 	printf("No head present");
-	return 0;
+	return;
   }
 				
   while(head->next!=NULL)
