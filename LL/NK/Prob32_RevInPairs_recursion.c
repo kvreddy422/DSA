@@ -13,25 +13,18 @@ struct node
 
 struct node *ReversePairWise(struct node *head){
 	struct node *a=NULL,*b=NULL,*out=NULL,*headStore=NULL;
-	headStore=head;
-	while (head){
-			if(head->next)
-				{
-					a=head->next;
-					if(a->next!=NULL){
-						b=a->next;																	
-					}
-					a->next=head;
-					head->next=b;
-				}
-			else
-				return head;
-			if(head->next){
-			if(head->next->next)						
-			out = ReversePairWise(head->next->next);
-			}					
+	// head->next->next is where you need to move
+	// need to return the head which is later connected to the new node
+	if(head)	
+	if(head->next){
+		b=head->next->next;
+		a=head->next;
+		a->next=head;
+		out=ReversePairWise(b);
+		head->next=b;	
+		return a;
 	}
-	return head;
+return head;
 	
 }
 
@@ -122,7 +115,7 @@ int main()
   insertBegin(&head,5);
   insertBegin(&head,10);
   // inserts 12 at end; LL = 5->7->12->NULL
-  //insertEnd(head,22); 
+  insertEnd(head,22); 
   //insertEnd(head,33);
   //insertEnd(head,12);
   //insertEnd(head,44);
