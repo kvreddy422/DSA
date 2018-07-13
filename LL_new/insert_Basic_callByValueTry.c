@@ -6,6 +6,7 @@ struct node{
 };
 
 struct node * insertAtBeginning(struct node *head, int data){
+	printf("I am atleast here");
 	struct node *newNode = (struct node*)malloc(sizeof(struct node));
 	newNode->data=data;
 	newNode->next=head->next;
@@ -60,9 +61,9 @@ int main()
 {
 	struct node *head = NULL;
 	head=insertAtBeginning(head,7);	
-	head=append(head,6);
-	head=append(head,5);
-	head=append(head,4);
+	//head=append(head,6);
+	//head=append(head,5);
+	//head=append(head,4);
 	
 	printList(head);
 	return 0;	
