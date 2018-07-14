@@ -38,7 +38,7 @@ void insertionSort(struct node *head)
   tempPrev=NULL;
   headPrev=NULL;
   temp2=NULL;
-  while(head1)
+  while(head1)	
   {
     temp2=head;
     tempPrev=NULL;			
@@ -57,7 +57,7 @@ void insertionSort(struct node *head)
 		break; 	
 		
     }
-  headPrev=head;
+  headPrev=head1;
   if(head1->next)		
   	head1=head1->next;
   else
