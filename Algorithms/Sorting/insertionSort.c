@@ -11,15 +11,15 @@ int main()
 {
   struct node *head = NULL;
   // inserts 7 at the begining ; LL = 7->NULL 
-  insertBegin(&head,7);
+  insertBegin(&head,2);
   // inserts 5 at the begining ; LL = 5->7->NULL
-  insertBegin(&head,5);
-  insertBegin(&head,10);
+  insertBegin(&head,3);
+  insertBegin(&head,1);
   // inserts 12 at end; LL = 5->7->12->NULL
-  insertEnd(head,12); 
-  insertEnd(head,4); // 5->7->12->4->NULL 
+  insertEnd(head,4); 
+  //insertEnd(head,5); // 5->7->12->4->NULL 
   // insertMiddle(a,b,c,d) a= address of head; b= data; c=postion; d= flag flag (0=postion from head; 1= check for that data and insert after that node) 5->
-  insertMiddle(head,21,1,0); // 5->7->12->21->4->NULL
+  //insertMiddle(head,21,1,0); // 5->7->12->21->4->NULL
  // insertMiddle(head,22,10,0); // Not possible
   //insertMiddle(&head,23,1,0); // 5->23->7->12->21->4->NULL
   //insertMiddle(&head,24,21,1); // Placed after node with data 23
@@ -32,25 +32,36 @@ int main()
 
 void insertionSort(struct node *head)
 {
-  struct node *temp = head,*head1=head,*tempPrev= NULL,*headPrev=NULL,*temp2=NULL;
+  struct node *temp,*head1,*tempPrev,*headPrev,*temp2;
+  temp=head;
+  head1=head;
+  tempPrev=NULL;
+  headPrev=NULL;
+  temp2=NULL;
   while(head1)
   {
-    temp2=temp;
+    temp2=head;
     tempPrev=NULL;			
     while(temp2!=head1)
     {
-	if(temp->data>head1->data){
+	if(temp2->data>head1->data){
 		headPrev->next=head1->next;
-		head1->next=temp;
+		head1->next=temp2;
 		if(tempPrev!=NULL)
 		tempPrev->next=head1;	
 	}
-	tempPrev=temp;
-        temp2=temp2->next; 	
+	tempPrev=temp2;
+	if(temp2->next)
+        	temp2=temp2->next;
+	else
+		break; 	
 		
     }
-  headPrev=head;	
-  head1=head1->next;
+  headPrev=head;
+  if(head1->next)		
+  	head1=head1->next;
+  else
+  	break;		
   }	  	  
 }
 
