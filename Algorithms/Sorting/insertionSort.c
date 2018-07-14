@@ -12,16 +12,16 @@ struct node
 struct node *insertionSort(struct node *head)
 {
   struct node *temp,*head1,*head3,*tempPrev,*headPrev,*temp2;
-  temp=head;
-  head1=head;
+  temp=head; // Stroed to retrive the head later -- for printing and initializing the head of the linked list. Simple - u can't go back in SLL so u need the head to access all the elements
+  head1=head;// this is the point which is used as a wall- like for the 1st loop we need to compare elements until this point
   tempPrev=NULL;
-  headPrev=NULL;
-  temp2=NULL;
+  headPrev=NULL;// you need previous for both present as we all as the head1 node. ex: 1->2->*4->5->*3->6; here 2=tempPrev, 4=temp , 5=headPrev
+  temp2=NULL; // this is the element in the inner loop. Comparition is temp2 vs head1
   while(head1)	
   {
-    temp2=head;
-    tempPrev=NULL;
-    head3=head1;			
+    temp2=head;// or temp; always the start of the loop;
+    tempPrev=NULL;// need to make null for ever loop as temp2 also changed; temp2 is the head; so tempPrev is null
+    head3=head1;// head1 changes when it goes inside the if condition; 1-2-4-(h)3-5 becomes 1-2-3-4-5			
     while(temp2!=head1)
     {
 	if(temp2->data>head1->data){
@@ -129,10 +129,13 @@ int main()
   // inserts 7 at the begining ; LL = 7->NULL 
   insertBegin(&head,2);
   // inserts 5 at the begining ; LL = 5->7->NULL
-  insertBegin(&head,3);
+  insertBegin(&head,8);
   //insertBegin(&head,1);
   // inserts 12 at end; LL = 5->7->12->NULL
-  insertEnd(head,4); 
+  insertEnd(head,4);
+  insertEnd(head,5);
+  insertEnd(head,3);
+  insertEnd(head,2); 
   //insertEnd(head,5); // 5->7->12->4->NULL 
   // insertMiddle(a,b,c,d) a= address of head; b= data; c=postion; d= flag flag (0=postion from head; 1= check for that data and insert after that node) 5->
   //insertMiddle(head,21,1,0); // 5->7->12->21->4->NULL
