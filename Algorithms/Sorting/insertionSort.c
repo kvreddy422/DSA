@@ -29,8 +29,7 @@ int main()
   printList(head);
   return 0;  
 }
-/*1->3->2->4
-1->2->4
+/*This code never works. The reason is that the 1st node... the intial node if replaced ex: 3->2->4 will not give 2->3->4; it is giving 3->4 as the output. The reason being you are using temp variable intially is 3. Now it can't change to 2. It will remain 3
 */
 void insertionSort(struct node *head)
 {
