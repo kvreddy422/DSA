@@ -33,8 +33,10 @@ struct node *insertionSort(struct node *head)
 		head1->next=temp2;
 		if(tempPrev!=NULL)
 		tempPrev->next=head1;
-		else
-		temp=head1;
+		else{
+			temp=head1;
+			head=temp;		
+		}		
 		break;	
 	}
 	tempPrev=temp2;
