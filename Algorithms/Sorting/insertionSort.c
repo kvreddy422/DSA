@@ -7,7 +7,11 @@ struct node
   struct node *next;
 };
 
-/*This code never works. The reason is that the 1st node... the intial node if replaced ex: 3->2->4 will not give 2->3->4; it is giving 3->4 as the output. The reason being you are using temp variable intially is 3. Now it can't change to 2. It will remain 3
+/*8->2->4->5->3->2
+
+HeadNew:2
+2->8
+Code not working
 */
 struct node *insertionSort(struct node *head)
 {
