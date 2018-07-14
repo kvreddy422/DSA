@@ -40,7 +40,7 @@ struct node *insertionSort(struct node *head)
 		break; 	
 		
     }
-  head1=head3;
+  //head1=head3;
   headPrev=head1;
   if(head1->next)		
   	head1=head1->next;
