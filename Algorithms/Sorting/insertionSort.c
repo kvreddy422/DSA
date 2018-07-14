@@ -14,7 +14,7 @@ int main()
   insertBegin(&head,2);
   // inserts 5 at the begining ; LL = 5->7->NULL
   insertBegin(&head,3);
-  insertBegin(&head,1);
+  //insertBegin(&head,1);
   // inserts 12 at end; LL = 5->7->12->NULL
   insertEnd(head,4); 
   //insertEnd(head,5); // 5->7->12->4->NULL 
@@ -34,7 +34,7 @@ int main()
 */
 void insertionSort(struct node *head)
 {
-  struct node *temp,*head1,*tempPrev,*headPrev,*temp2;
+  struct node *temp,*head1,*head3,*tempPrev,*headPrev,*temp2;
   temp=head;
   head1=head;
   tempPrev=NULL;
@@ -43,14 +43,16 @@ void insertionSort(struct node *head)
   while(head1)	
   {
     temp2=head;
-    tempPrev=NULL;			
+    tempPrev=NULL;
+    head3=head1;			
     while(temp2!=head1)
     {
 	if(temp2->data>head1->data){
 		headPrev->next=head1->next;
 		head1->next=temp2;
 		if(tempPrev!=NULL)
-		tempPrev->next=head1;	
+		tempPrev->next=head1;
+		break;	
 	}
 	tempPrev=temp2;
 	if(temp2->next)
@@ -59,12 +61,14 @@ void insertionSort(struct node *head)
 		break; 	
 		
     }
+  head1=head3;
   headPrev=head1;
   if(head1->next)		
   	head1=head1->next;
   else
   	break;		
-  }	  	  
+  }
+  head=temp;	  	  
 }
 
 
