@@ -33,7 +33,7 @@ int main()
 void insertionSort(struct node *head)
 {
   struct node *temp = head,*head1=head,*tempPrev= NULL,*headPrev=NULL,*temp2=NULL;
-  while(head1!=NULL)
+  while(head1)
   {
     temp2=temp;
     tempPrev=NULL;			
@@ -41,13 +41,15 @@ void insertionSort(struct node *head)
     {
 	if(temp->data>head1->data){
 		headPrev->next=head1->next;
-		head->next=temp;
+		head1->next=temp;
 		if(tempPrev!=NULL)
-		tempPrev->next=head;	
+		tempPrev->next=head1;	
 	}
+	tempPrev=temp;
         temp2=temp2->next; 	
 		
     }
+  headPrev=head;	
   head1=head1->next;
   }	  	  
 }
