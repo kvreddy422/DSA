@@ -9,7 +9,7 @@ struct node
 
 int main()
 {
-  struct node *head = NULL;
+  struct node *head = NULL,*headNew;
   // inserts 7 at the begining ; LL = 7->NULL 
   insertBegin(&head,2);
   // inserts 5 at the begining ; LL = 5->7->NULL
@@ -25,13 +25,14 @@ int main()
   //insertMiddle(&head,24,21,1); // Placed after node with data 23
   
   printList(head);
-  insertionSort(head);
-  printList(head);
+  headNew=insertionSort(head);
+  printf("\nHeadNew:%d\n",headNew->data);	
+  printList(headNew);
   return 0;  
 }
 /*This code never works. The reason is that the 1st node... the intial node if replaced ex: 3->2->4 will not give 2->3->4; it is giving 3->4 as the output. The reason being you are using temp variable intially is 3. Now it can't change to 2. It will remain 3
 */
-void insertionSort(struct node *head)
+struct node *insertionSort(struct node *head)
 {
   struct node *temp,*head1,*head3,*tempPrev,*headPrev,*temp2;
   temp=head;
@@ -51,6 +52,8 @@ void insertionSort(struct node *head)
 		head1->next=temp2;
 		if(tempPrev!=NULL)
 		tempPrev->next=head1;
+		else
+		temp=head1;
 		break;	
 	}
 	tempPrev=temp2;
@@ -67,7 +70,7 @@ void insertionSort(struct node *head)
   else
   	break;		
   }
-  head=temp;	  	  
+  return temp;	  	  
 }
 
 
