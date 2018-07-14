@@ -29,7 +29,9 @@ int main()
   printList(head);
   return 0;  
 }
-
+/*1->3->2->4
+1->2->4
+*/
 void insertionSort(struct node *head)
 {
   struct node *temp,*head1,*tempPrev,*headPrev,*temp2;
