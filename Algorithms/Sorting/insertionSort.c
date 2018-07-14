@@ -31,10 +31,10 @@ struct node *insertionSort(struct node *head)
 	if(temp2->data>head1->data){
 		headPrev->next=head1->next;
 		head1->next=temp2;
-		if(tempPrev!=NULL)
+		if(tempPrev!=NULL) // need to occur only if swap is happening between non head element
 		tempPrev->next=head1;
 		else{
-			temp=head1;
+			temp=head1;// As we are not using double pointers... this is needed; head an temp need to me head1;
 			head=temp;		
 		}		
 		break;	
