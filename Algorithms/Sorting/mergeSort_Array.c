@@ -4,7 +4,7 @@
 void merge(int arr[], int temp[], int left, int mid, int right)
 {
 	int left_boundary=mid-1;
-	int temp_counter=0;
+	int temp_counter=left;
 	int size=right-left+1;
 	while(left<=left_boundary && mid<= right ){
 		if(arr[left]<arr[left_boundary]){
