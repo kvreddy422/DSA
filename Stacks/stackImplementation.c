@@ -19,7 +19,7 @@ struct Stack *createStack(int size){
 }
 
 int stackIsFull(struct Stack *S){
-	return ((S->top+1)%(S->capacity)==0);// This can't be used because if S->top = -1; S->top+1 =0; 0%x=0; So cahnge it to S->top+1==S->capacity
+	return (S->top+1==S->capacity);
 }
 
 int stackIsEmpty(struct Stack *S){
