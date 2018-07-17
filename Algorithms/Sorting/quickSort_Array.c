@@ -14,10 +14,21 @@
 int partition (int arr[], int low, int high)
 {
 	int pivot = arr[high];
+	int a,b,flag=0;
 	for (int i=0;i<(high-low);i++){
-		if(arr[i]>high){
-			swap(arr[i],arr[i+1]);		
-		}	
+		if(arr[i]<pivot){
+			a=i;
+			if(flag==0)
+				continue;
+			flag=0;	
+		}
+		if(arr[i]>pivot){
+			b=i;
+			if(flag==1)
+				continue;
+			flag=1;
+		}
+		swap(arr[a],arr[b]);	
 	}
 }
  
