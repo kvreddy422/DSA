@@ -9,12 +9,10 @@ void swap(int* a, int* b)
     *b = t;
 }
  
-/*Error: Sorted array: 
-9 7 8 9 1 5 4 6 10 12 2 
-*/
+
 int partition (int arr[], int low, int high)
 {
-	int pivot = arr[high];
+	int pivot = arr[high]; // breaks here, check line 34
 	int j=low-1;
 	for (int i=low;i<high;i++){
 		if(arr[i]<=pivot){
@@ -31,8 +29,8 @@ void quickSort(int arr[], int low, int high)
 {
 	if(low<high){
 		int pivot_new=partition(arr,low,high);
-		quickSort(arr,low,pivot_new);
-		quickSort(arr,pivot_new+1,high);	
+		quickSort(arr,low,pivot_new-1);
+		quickSort(arr,pivot_new+1,high); // Corrected the pivot; else on the rightmost and lowest level partition high becomes more that arr_size and breaks in line 15	
 	}    
 }
  
