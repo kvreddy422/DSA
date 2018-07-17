@@ -44,7 +44,7 @@ void enQueue(struct Queue *Q, int data){
 
 int deQueue(struct Queue *Q){
 	int data;
-	if(isQueueEmpty){
+	if(isQueueEmpty(Q)){
 		printf("Queue is Empty\n");
 		return 0;	
 	}
@@ -62,48 +62,6 @@ void deleteQueue(struct Queue *Q){
 		
 }
 
-/*Enqueue 9
-Enqueue 8
-Enqueue 7
-Enqueue 6
-Enqueue 5
-Enqueue 4
-Enqueue 3
-Enqueue 2
-Enqueue 1
-Enqueue 0
-Enqueue -1
-Enqueue -2
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0
-Queue is Empty
-Dequeue 0*/
 
 void main(){
 	struct Queue *Q=queueDef(20);	
@@ -119,6 +77,9 @@ void main(){
 	enQueue(Q,0);
 	enQueue(Q,-1);
 	enQueue(Q,-2);
-	for(int i=0;i<15;i++)
-		printf("Dequeue %d\n",deQueue(Q));
+	int a;
+	for(int i=0;i<15;i++){
+		a = deQueue(Q);
+		printf("Dequeue %d\n",a);
+	}
 }
