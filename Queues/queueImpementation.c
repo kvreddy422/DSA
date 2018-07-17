@@ -61,9 +61,40 @@ void deleteQueue(struct Queue *Q){
 		
 }
 
+/*Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+Queue is Empty
+Dequeue 0
+*/
+
 void main(){
-	struct Queue *Q;
-	queueDef(10);	
+	struct Queue *Q=queueDef(20);	
 	enQueue(Q,9);
 	enQueue(Q,8);
 	enQueue(Q,7);
