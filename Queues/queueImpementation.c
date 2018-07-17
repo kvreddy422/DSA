@@ -36,6 +36,7 @@ void enQueue(struct Queue *Q, int data){
 	else{
 		Q->rear=(Q->rear+1)%Q->capacity;
 		Q->array[Q->rear]=data;
+		printf("Enqueue %d\n",Q->array[Q->rear]);
 		if(Q->front==-1)
 			Q->front=Q->rear;	
 	}
@@ -61,8 +62,18 @@ void deleteQueue(struct Queue *Q){
 		
 }
 
-/*Queue is Empty
-Dequeue 0
+/*Enqueue 9
+Enqueue 8
+Enqueue 7
+Enqueue 6
+Enqueue 5
+Enqueue 4
+Enqueue 3
+Enqueue 2
+Enqueue 1
+Enqueue 0
+Enqueue -1
+Enqueue -2
 Queue is Empty
 Dequeue 0
 Queue is Empty
@@ -91,7 +102,8 @@ Queue is Empty
 Dequeue 0
 Queue is Empty
 Dequeue 0
-*/
+Queue is Empty
+Dequeue 0*/
 
 void main(){
 	struct Queue *Q=queueDef(20);	
