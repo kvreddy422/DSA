@@ -146,9 +146,9 @@ void printLevelorder(struct tree *node){
 			break;
 		Push(S,node); // WTF ********************************************************************* Bad coding
 		if(node->left)
-			enQueue(Q,node->left);
+			enQueue(Q,node->right);
 		if(node->right)
-			enQueue(Q,node->right);		
+			enQueue(Q,node->left);		
 	}
 	while(!stackIsEmpty(S)){
 		struct tree *T=Pop(S);
