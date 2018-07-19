@@ -97,6 +97,8 @@ void printLevelorder(struct tree *node){
 			node = deQueue(Q);
 			printf("%d ",node->data);		
 		}
+		else
+			node=NULL;
 		if(node->left)
 			enQueue(Q,node->left);
 		if(node->right)
