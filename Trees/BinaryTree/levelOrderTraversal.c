@@ -1,5 +1,14 @@
 # include<stdio.h>
 #include <stdlib.h>
+// The actual code implementation for the level order tree
+// Data , Left and Right
+struct tree
+{
+	int data;
+	struct tree *left;
+	struct tree *right;
+};
+
 // Queue for the Level Order Tree
 struct Queue{
 	int front, rear;
@@ -13,7 +22,7 @@ struct Queue *queueDef(int size){
 		return NULL;
 	Q->front=Q->rear=-1;
 	Q->capacity=size;
-	Q->array=malloc(Q->capacity*sizeof(int));
+	Q->array=malloc(Q->capacity*sizeof(tree));
 	if(!Q->array)
 		return NULL;
 	return Q;
@@ -31,40 +40,33 @@ int queueSize(struct Queue *Q){
 	return (Q->rear-Q->front+1)%Q->capacity;
 }
 
-void enQueue(struct Queue *Q, int data){
+void enQueue(struct Queue *Q, struct tree){
 	if(isQueueFull(Q))
 		printf("Queue is FUll\n");
 	else{
 		Q->rear=(Q->rear+1)%Q->capacity;
-		Q->array[Q->rear]=data;
+		Q->array[Q->rear]=tree;
 		printf("Enqueue %d\n",Q->array[Q->rear]);
 		if(Q->front==-1)
 			Q->front=Q->rear;	
 	}
 }
 
-int deQueue(struct Queue *Q){
+struct tree *deQueue(struct Queue *Q){
 	int data;
 	if(isQueueEmpty(Q)){
 		printf("Queue is Empty\n");
 		return 0;	
 	}
-	data=Q->array[Q->front];
+	strcut tree *T =Q->array[Q->front];
 	if(Q->front == Q->rear)
 		Q->front=Q->rear=-1;
 	else
 		Q->front=(Q->front+1)%Q->capacity;
-	return data;
+	return T;
 }
 
-// The actual code implementation for the level order tree
-// Data , Left and Right
-struct tree
-{
-	int data;
-	struct tree *left;
-	struct tree *right;
-};
+
 
 // Add a new node
 struct tree* newNode(int data){
@@ -78,19 +80,20 @@ struct tree* newNode(int data){
 void printLevelorder(struct tree *node){
 	if (node==NULL)
 		return node;
-	else{
+	else
+		printf("%d ",node->data);		
+	while(node){
 		struct Queue *Q=queueDef(20);
-		enQueue(Q,node->data);
+		enQueue(Q,node);
 		if(!isQueueEmpty){
-			int myData = deQueue(Q);
+			node = deQueue(Q);
 			printf("%d ",node->data);		
 		}
 		if(node->left)
-			enQueue(Q)		
+			enQueue(node->left);
+		if(node->right)
+			enQueue(node->right);		
 	}
-	printPostorder(node->left);	
-	printPostorder(node->right);
-	printf("%d ",node->data);
 }
 
 
