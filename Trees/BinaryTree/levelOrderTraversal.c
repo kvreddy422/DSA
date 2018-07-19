@@ -86,12 +86,12 @@ levelOrderTraversal.c:60:18: error: incompatible types when initializing type â€
   struct tree *T =Q->array[Q->front];
 */
 void printLevelorder(struct tree *node){
+	struct Queue *Q=queueDef(20);
 	if (node==NULL)
 		return;
 	else
 		printf("%d ",node->data);		
 	while(node){
-		struct Queue *Q=queueDef(20);
 		enQueue(Q,node);
 		if(!isQueueEmpty){
 			node = deQueue(Q);
