@@ -117,7 +117,8 @@ Queue is FUll
 void printLevelorder(struct tree *node){
 	struct Queue *Q=queueDef(20);
 	struct tree *node_temp=node;
-	while(node_temp){
+	//while(node_temp){
+	for(int i=0;i<10;i++){
 		printf("%d ",node->data);
 		if(node_temp!=node)
 			node_temp=deQueue(Q);
