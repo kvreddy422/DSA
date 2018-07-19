@@ -13,7 +13,7 @@ struct tree
 struct Queue{
 	int front, rear;
 	int capacity;
-	struct tree *array;
+	struct tree **array;
 };
 
 struct Queue *queueDef(int size){
@@ -22,7 +22,7 @@ struct Queue *queueDef(int size){
 		return NULL;
 	Q->front=Q->rear=-1;
 	Q->capacity=size;
-	Q->array= (struct tree *)malloc(Q->capacity*sizeof(struct tree));
+	Q->array= (struct tree **)malloc(Q->capacity*sizeof(struct tree));
 	if(!Q->array)
 		return NULL;
 	return Q;
