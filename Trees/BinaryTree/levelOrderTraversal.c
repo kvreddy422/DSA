@@ -54,7 +54,6 @@ void enQueue(struct Queue *Q, struct tree *T){
 struct tree *deQueue(struct Queue *Q){
 	int data;
 	if(isQueueEmpty(Q)){
-		printf("Queue is Empty\n");
 		return NULL;	
 	}
 	struct tree *T =Q->array[Q->front];
@@ -117,8 +116,20 @@ Queue is FUll
 void printLevelorder(struct tree *node){
 	struct Queue *Q=queueDef(20);
 	struct tree *node_temp=node;
-	//while(node_temp){
-	for(int i=0;i<10;i++){
+	if(!node)
+		return;
+	enQueue(Q,node);	
+	while(node){
+		node=deQueue(Q);
+		if(node==NULL)
+			return;
+		printf("%d ",node->data);
+		if(node->left)
+			enQueue(Q,node->left);
+		if(node->right)
+			enQueue(Q,node->right);		
+	}	
+	/*while(node_temp){
 		printf("%d ",node->data);
 		if(node_temp!=node)
 			node_temp=deQueue(Q);
@@ -128,7 +139,10 @@ void printLevelorder(struct tree *node){
 			enQueue(Q,node_temp->left);
 		if(node_temp->right)
 			enQueue(Q,node_temp->right);	
-	}
+	}*/
+
+
+
 	/*if (node==NULL)
 		return;
 	else
