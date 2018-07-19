@@ -16,13 +16,6 @@ struct Stack{
 	struct tree **array;	
 };
 
-struct Queue{
-	int front, rear;
-	int capacity;
-	struct tree **array;
-};
-
-
 struct Stack *createStack(int size){
 	struct Stack *S=malloc(sizeof(struct Stack));
 	if(!S)
@@ -51,6 +44,16 @@ void Push(struct Stack *S, struct tree *T){
 	}
 	S->top++;
 	S->array[S->top]=T;
+/*Levelorder traversal of binary tree is 
+T data is 1 
+T data is 2 
+T data is 3 
+T data is 4 
+T data is 5 
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000555555554815 in Push (S=0x555555757920, T=0x0) at levelOrderTraversal_reverse.c:46
+46		printf("T data is %d \n",T->data);*/
 }
 
 struct tree *Pop(struct Stack *S){
@@ -60,6 +63,13 @@ struct tree *Pop(struct Stack *S){
 	return S->array[S->top--];
 }
 
+
+// Queue for the Level Order Tree
+struct Queue{
+	int front, rear;
+	int capacity;
+	struct tree **array;
+};
 
 struct Queue *queueDef(int size){
 	struct Queue *Q = malloc(sizeof(struct Queue));
@@ -109,7 +119,6 @@ struct tree *deQueue(struct Queue *Q){
 	return T;
 }
 
-
 // Add a new node
 struct tree* newNode(int data){
 	struct tree *node = (struct tree*)malloc(sizeof(struct tree));
@@ -124,11 +133,10 @@ struct tree* newNode(int data){
 141			printf("%d ",Pop(S)->data);
 */
 void printLevelorder(struct tree *node){
+	
 	struct Queue *Q=queueDef(20);
 	struct Stack *S=createStack(20);
 	struct tree *node_temp=node;
-	if(!node)
-		return;
 	enQueue(Q,node);	
 	while(node){
 		node=deQueue(Q);
@@ -141,8 +149,29 @@ void printLevelorder(struct tree *node){
 			enQueue(Q,node->right);		
 	}
 	while(!stackIsEmpty(S)){
-		printf("%d ",Pop(S)->data);
+		struct tree *T=Pop(S);
+		printf("%d ",T->data);
 	}
+	/*struct Queue *Q=queueDef(20);
+	struct Stack *S=createStack(20);
+	struct tree *node_temp=node;
+	if(!node)
+		return;
+	enQueue(Q,node);	
+	while(node){
+		node=deQueue(Q);
+		Push(S,node);
+		printf("%d ",node->data);
+		if(node==NULL)
+			break;
+		if(node->left)
+			enQueue(Q,node->left);
+		if(node->right)
+			enQueue(Q,node->right);		
+	}
+	while(!stackIsEmpty(S)){
+		printf("%d ",Pop(S)->data);
+	}*/
 
 }
 
