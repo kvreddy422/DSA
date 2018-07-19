@@ -44,6 +44,7 @@ void Push(struct Stack *S, struct tree *T){
 	}
 	S->top++;
 	S->array[S->top]=T;
+	printf("T data is %d \n",T->data);
 /*Levelorder traversal of binary tree is 
 T data is 1 
 T data is 2 
@@ -137,12 +138,13 @@ void printLevelorder(struct tree *node){
 	struct Queue *Q=queueDef(20);
 	struct Stack *S=createStack(20);
 	struct tree *node_temp=node;
+	if(node)
 	enQueue(Q,node);	
 	while(node){
 		node=deQueue(Q);
-		Push(S,node);
 		if(node==NULL)
 			break;
+		Push(S,node); // WTF ********************************************************************* Bad coding
 		if(node->left)
 			enQueue(Q,node->left);
 		if(node->right)
