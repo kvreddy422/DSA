@@ -13,7 +13,7 @@ struct tree
 struct Queue{
 	int front, rear;
 	int capacity;
-	int *array;
+	struct tree *array;
 };
 
 struct Queue *queueDef(int size){
@@ -22,7 +22,7 @@ struct Queue *queueDef(int size){
 		return NULL;
 	Q->front=Q->rear=-1;
 	Q->capacity=size;
-	Q->array=malloc(Q->capacity*sizeof(tree));
+	Q->array= (struct tree *)malloc(Q->capacity*sizeof(struct tree));
 	if(!Q->array)
 		return NULL;
 	return Q;
@@ -40,13 +40,12 @@ int queueSize(struct Queue *Q){
 	return (Q->rear-Q->front+1)%Q->capacity;
 }
 
-void enQueue(struct Queue *Q, struct tree){
+void enQueue(struct Queue *Q, struct tree *T){
 	if(isQueueFull(Q))
 		printf("Queue is FUll\n");
 	else{
 		Q->rear=(Q->rear+1)%Q->capacity;
-		Q->array[Q->rear]=tree;
-		printf("Enqueue %d\n",Q->array[Q->rear]);
+		Q->array[Q->rear]=T;
 		if(Q->front==-1)
 			Q->front=Q->rear;	
 	}
@@ -58,7 +57,7 @@ struct tree *deQueue(struct Queue *Q){
 		printf("Queue is Empty\n");
 		return 0;	
 	}
-	strcut tree *T =Q->array[Q->front];
+	struct tree *T =Q->array[Q->front];
 	if(Q->front == Q->rear)
 		Q->front=Q->rear=-1;
 	else
@@ -77,9 +76,18 @@ struct tree* newNode(int data){
 	return node;
 }
 // Level Order Traversal is done using Queues
+
+/*ERRORs levelOrderTraversal.c: In function ‘enQueue’:
+levelOrderTraversal.c:48:20: error: incompatible types when assigning to type ‘struct tree’ from type ‘struct tree *’
+   Q->array[Q->rear]=T;
+                    ^
+levelOrderTraversal.c: In function ‘deQueue’:
+levelOrderTraversal.c:60:18: error: incompatible types when initializing type ‘struct tree *’ using type ‘struct tree’
+  struct tree *T =Q->array[Q->front];
+*/
 void printLevelorder(struct tree *node){
 	if (node==NULL)
-		return node;
+		return;
 	else
 		printf("%d ",node->data);		
 	while(node){
@@ -90,12 +98,11 @@ void printLevelorder(struct tree *node){
 			printf("%d ",node->data);		
 		}
 		if(node->left)
-			enQueue(node->left);
+			enQueue(Q,node->left);
 		if(node->right)
-			enQueue(node->right);		
+			enQueue(Q,node->right);		
 	}
 }
-
 
 int main()
 {
@@ -109,4 +116,5 @@ int main()
      printLevelorder(root);
      getchar();
      return 0;
-}/*
+}
+
