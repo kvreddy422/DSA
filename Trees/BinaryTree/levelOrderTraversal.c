@@ -77,13 +77,10 @@ struct tree* newNode(int data){
 }
 // Level Order Traversal is done using Queues
 
-/*ERRORs levelOrderTraversal.c: In function ‘enQueue’:
-levelOrderTraversal.c:48:20: error: incompatible types when assigning to type ‘struct tree’ from type ‘struct tree *’
-   Q->array[Q->rear]=T;
-                    ^
-levelOrderTraversal.c: In function ‘deQueue’:
-levelOrderTraversal.c:60:18: error: incompatible types when initializing type ‘struct tree *’ using type ‘struct tree’
-  struct tree *T =Q->array[Q->front];
+/*Levelorder traversal of binary tree is 
+1 .......
+The program is not terminating 
+
 */
 void printLevelorder(struct tree *node){
 	struct Queue *Q=queueDef(20);
@@ -97,9 +94,11 @@ void printLevelorder(struct tree *node){
 			node = deQueue(Q);
 			printf("%d ",node->data);		
 		}
-		else
+		else{
 			node=NULL;
-		if(node->left)
+			return;		
+		}
+		if(node->left) // The error happens here as we are making node = NULL so that the loop terminates finally. Didn't loop into if this line executes 
 			enQueue(Q,node->left);
 		if(node->right)
 			enQueue(Q,node->right);		
