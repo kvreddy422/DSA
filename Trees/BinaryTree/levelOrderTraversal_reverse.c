@@ -22,17 +22,6 @@ struct Queue{
 	struct tree **array;
 };
 
-struct Queue *queueDef(int size){
-	struct Queue *Q = malloc(sizeof(struct Queue));
-	if(!Q)
-		return NULL;
-	Q->front=Q->rear=-1;
-	Q->capacity=size;
-	Q->array= (struct tree **)malloc(Q->capacity*sizeof(struct tree));
-	if(!Q->array)
-		return NULL;
-	return Q;
-}
 
 struct Stack *createStack(int size){
 	struct Stack *S=malloc(sizeof(struct Stack));
@@ -40,7 +29,7 @@ struct Stack *createStack(int size){
 		return NULL;
 	S->capacity=size;
 	S->top=-1;
-	S->array= (struct tree **)malloc(Q->capacity*sizeof(struct tree));
+	S->array= (struct tree **)malloc(S->capacity*sizeof(struct tree));
 	if(!S->array)
 		return NULL;
 	return S;
@@ -71,14 +60,6 @@ struct tree *Pop(struct Stack *S){
 	return S->array[S->top--];
 }
 
-//QUEUE
-
-// Queue for the Level Order Tree
-struct Queue{
-	int front, rear;
-	int capacity;
-	struct tree **array;
-};
 
 struct Queue *queueDef(int size){
 	struct Queue *Q = malloc(sizeof(struct Queue));
@@ -138,9 +119,13 @@ struct tree* newNode(int data){
 	return node;
 }
 // Level Order Traversal is done using Stacks
-
+/*Program received signal SIGSEGV, Segmentation fault.
+0x0000555555554ba5 in printLevelorder (node=0x0) at levelOrderTraversal_reverse.c:141
+141			printf("%d ",Pop(S)->data);
+*/
 void printLevelorder(struct tree *node){
 	struct Queue *Q=queueDef(20);
+	struct Stack *S=createStack(20);
 	struct tree *node_temp=node;
 	if(!node)
 		return;
@@ -156,7 +141,7 @@ void printLevelorder(struct tree *node){
 			enQueue(Q,node->right);		
 	}
 	while(!stackIsEmpty(S)){
-		printf("%d ",S->data);
+		printf("%d ",Pop(S)->data);
 	}
 
 }
@@ -167,8 +152,7 @@ int main()
      root->left = newNode(2);
      root->right = newNode(3);
      root->left->left = newNode(4);
-     root->left->right = newNode(5); 	
-     struct Stack *S=createStack(20);	
+     root->left->right = newNode(5); 		
      printf("\nLevelorder traversal of binary tree is \n");
      printLevelorder(root);
      getchar();
