@@ -8,22 +8,32 @@ struct node
 };
 
 
-// Reverse the Linked List; ex: 1->2->3->4->X turns out to be 2->1->4->3->X; 
-/*This Program might not work.The reason is that it you have given head=head->next->next before calling the recusion function. That means, you can't access the first 2 elements no matter what. Even if you put some conditional statements to access it, the code runs in every reursion*/
+/* List before Revesing 10->5->7->22->33->12->44
+ List after Revesing 22->7->5->10->33->12->44
+*/
 
 struct node *ReversePairWise(struct node *head, int margin){
-	struct node *prev=NULL,*next=NULL,*now=head;
-	int count=0;
-	while(now && count<margin){
-		next=now->next;
-		now->next=prev;
-		prev=now;
-		now=next;
-		count++;	
+	struct node *prev=NULL,*next=NULL,*now=head,*counter=head;
+	int count=0,count1=0;
+	while(counter){
+		count1++;
+		counter=counter->next;	
 	}
-	if(next)
-		head->next=ReversePairWise(next,margin);
-	return prev;	
+	if(count1>=margin){
+		while(now && count<margin){
+			next=now->next;
+			now->next=prev;
+			prev=now;
+			now=next;
+			count++;	
+		}
+		if(next)
+			head->next=ReversePairWise(next,margin);
+	}
+	else{
+		return head;	
+	}	
+	return prev;		
 }
 
 void insertBegin(struct node **head, int data)
