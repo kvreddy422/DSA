@@ -1,6 +1,6 @@
 # include<stdio.h>
 
-int Permutation(int n,int k){
+long Permutation(int n,int k){
 	int a=n-k;
 	if(n-k<1)
 		a=1;
@@ -14,10 +14,10 @@ int Permutation(int n,int k){
 
 
 int main(){
-	int i=10;
-	int j=5;
+	int i=100;
+	int j=50;
 	
-			printf("Value of P(%d , %d) is %d\n",i,j,Permutation(i,j));
+			printf("Value of P(%d , %d) is %lu\n",i,j,Permutation(i,j));
 	
 	return 0;
 }

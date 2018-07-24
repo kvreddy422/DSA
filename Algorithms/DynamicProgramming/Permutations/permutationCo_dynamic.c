@@ -2,8 +2,8 @@
 
 # include<stdio.h>
 
-int Permutation(int n,int k){
-	int array[n+1][k+1];
+long Permutation(int n,int k){
+	long array[n+1][k+1];
 	array[1][0]=1;
 	array[0][1]=1;
 	array[0][0]=0;
@@ -24,9 +24,9 @@ int Permutation(int n,int k){
 
 
 int main(){	
-	int i=10;
-	int j=5;
+	int i=100;
+	int j=50;
 	
-			printf("Value of P(%d , %d) is %d\n",i,j,Permutation(i,j));
+			printf("Value of P(%d , %d) is %lu\n",i,j,Permutation(i,j));
 	return 0;
 }
