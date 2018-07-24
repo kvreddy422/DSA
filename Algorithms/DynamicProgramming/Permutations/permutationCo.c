@@ -14,7 +14,10 @@ int Permutation(int n,int k){
 
 
 int main(){
-	int n=10,k=2;
-	printf("Value of P(%d , %d) is %d",n,k,Permutation(n,k));
+	int i=10;
+	int j=5;
+	
+			printf("Value of P(%d , %d) is %d\n",i,j,Permutation(i,j));
+	
 	return 0;
 }
