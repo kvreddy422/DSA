@@ -1,0 +1,8 @@
+Value of P(100 , 50) is 18326909991649853892
+
+
+Time analysis
+real	0m0.003s
+user	0m0.001s
+sys	0m0.002s
+
