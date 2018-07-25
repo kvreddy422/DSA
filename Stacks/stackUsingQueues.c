@@ -52,7 +52,6 @@ void enQueue(struct Queue *Q, int data){
 	else{*/
 		Q->rear=(Q->rear+1)%Q->capacity;
 		Q->array[Q->rear]=data;
-		printf("Enqueue %d\n",Q->array[Q->rear]);
 		if(Q->front==-1)
 			Q->front=Q->rear;	
 	//}
@@ -114,40 +113,7 @@ void deleteQueue(struct Queue *Q){
 		free(Q);
 		
 }
-/*
-nqueue 9
-Enqueue 8
-Enqueue 7
-Enqueue 6
-Enqueue 5
-Enqueue 4
-Enqueue 3
-Enqueue 2
-Enqueue 1
-Enqueue 0
-Enqueue -1
-Enqueue -2
-Enqueue 9
-Enqueue 8
-Enqueue 7
-Enqueue 6
-Enqueue 5
-Enqueue 4
-Enqueue 3
-Enqueue 2
-Enqueue 1
-Enqueue 0
-Enqueue -1
-Enqueue -2
-Pop 9
-Pop 8
-Pop 7
-Pop 6
-Pop 5
-Pop 4
-Pop 3
-Pop 2
-*/
+
 void main(){
 	struct Stack *S=createStack(20);	
 	Push(S,9);
