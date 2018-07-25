@@ -18,7 +18,7 @@ struct tree* newNode(int data){
 }
 
 void printBoundaryNodesLeft(struct tree *T){
-	if(T && T->left!=NULL && T->right!=NULL){
+	if(T && T->left!=NULL || T->right!=NULL){
 		printf("%d,",T->data);
 		printBoundaryNodesLeft(T->left);	
 	}
@@ -34,7 +34,7 @@ void printChildNodes(struct tree *T){
 }
 
 void printBoundaryNodesRight(struct tree *T){
-	if(T && T->left!=NULL && T->right!=NULL){
+	if(T && T->left!=NULL || T->right!=NULL){
 		printBoundaryNodesRight(T->right);	
 		printf("%d,",T->data);	
 	}
