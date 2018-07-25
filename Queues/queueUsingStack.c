@@ -74,9 +74,9 @@ int Pop(struct Stack *S){
 
 
 void enQueue(struct Queue *Q, int data){
-	/*if(stackIsFull(Q->stack1))
+	if(stackIsFull(Q->stack1) || stackIsFull(Q->stack2) )
 		printf("Queue is FUll\n");
-	else{*/
+	else{
 		int sData;
 		while(!stackIsEmpty(Q->stack2)){
 			sData=Pop(Q->stack2);
@@ -84,22 +84,20 @@ void enQueue(struct Queue *Q, int data){
 		}
 		Push(Q->stack1,data);
 			
-	//}
+	}
 }
 
 int deQueue(struct Queue *Q){
-///////////////////////////////////////////////////////
 	int sData;
-	/*if(stackIsEmpty(Q->stack1)){
+	if(stackIsEmpty(Q->stack1) && stackIsEmpty(Q->stack2)){
 		printf("Queue is Empty");
 		return 0;
-	}*/
+	}
 	while(!stackIsEmpty(Q->stack1)){
 		sData=Pop(Q->stack1);
 		Push(Q->stack2,sData);
 	}
 	return Pop(Q->stack2);		
-///////////////////////////////////////////////////////
 }
 
 void deleteQueue(struct Queue *Q){
@@ -113,23 +111,6 @@ void deleteStack(struct Stack *S){
 		free(S);
 }
 
-/*
-Dequeue 9
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-Queue is EmptyDequeue 0
-*/
 void main(){
 	struct Queue *Q=queueDef(20);	
 	enQueue(Q,9);
@@ -145,7 +126,7 @@ void main(){
 	enQueue(Q,-1);
 	enQueue(Q,-2);
 	int a;
-	for(int i=0;i<6;i++){
+	for(int i=0;i<16;i++){
 		a = deQueue(Q);
 		printf("Dequeue %d\n",a);
 	}
