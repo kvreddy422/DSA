@@ -76,7 +76,7 @@ int isQueueEmptyTot(struct Queue *Q){
 }
 
 int isQueueEmpty(struct Queue *Q){
-	return ((Q->rear-1)%Q->capacity == Q->front);
+	return (Q->front=Q->rear);
 }
 
 int isQueueFull(struct Queue *Q){
