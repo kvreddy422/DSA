@@ -9,7 +9,7 @@ d S1->; S2->3-7    8
 e4 S1->7-3 S1->7-3-4; S2->
 e5 S1->7-3-4-5; S2->
 d S1->; S2->5-4-3-7; S2->5-4-3   7
-d S1->; S2->5-4   3
+d S1->; S2->5-4   3	
 e1 S1->4-5; S1->4-5-1; S2->  	
 */
 
@@ -47,42 +47,33 @@ struct Stack *createStack(int size){
 	return S;
 }
 
-int isQueueEmpty(struct Queue *Q){
-	return (Q->front == -1);
-}
-
-int isQueueFull(struct Queue *Q){
-	return ((Q->rear+1)%Q->capacity == Q->front);
-}
-
-int queueSize(struct Queue *Q){
-	return (Q->rear-Q->front+1)%Q->capacity;
-}
-
 void enQueue(struct Queue *Q, int data){
-	if(isQueueFull(Q))
+	if(stackIsFull(Q->stack1))
 		printf("Queue is FUll\n");
 	else{
-		Q->
-		Q->array[Q->rear]=data;
-		printf("Enqueue %d\n",Q->array[Q->rear]);
-		if(Q->front==-1)
-			Q->front=Q->rear;	
+		int sData;
+		while(!stackIsEmpty(Q->stack2)){
+			s=Pop(Q->stack2);
+			Push(Q->stack1,sData);
+		}
+		Push(Q->stack1,data);
+			
 	}
 }
 
 int deQueue(struct Queue *Q){
-	int data;
-	if(isQueueEmpty(Q)){
-		printf("Queue is Empty\n");
-		return 0;	
+///////////////////////////////////////////////////////
+	int sData;
+	if(stackIsEmpty(Q->stack1)){
+		printf("Queue is Empty");
+		return 0;
 	}
-	data=Q->array[Q->front];
-	if(Q->front == Q->rear)
-		Q->front=Q->rear=-1;
-	else
-		Q->front=(Q->front+1)%Q->capacity;
-	return data;
+	while(!stackIsEmpty(Q->stack1)){
+		sData=Pop(Q->stack1);
+		Push(Q->stack2,sData);
+	}
+	return Pop(Q->stack2);		
+///////////////////////////////////////////////////////
 }
 
 void deleteQueue(struct Queue *Q){
@@ -121,27 +112,6 @@ void deleteStack(struct Stack *S){
 		free(S);
 }
 
-void main(){
-	struct Stack *S=createStack(20);	
-	Push(S,9);
-	Push(S,8);
-	Push(S,7);
-	Push(S,6);
-	Push(S,5);
-	Push(S,4);
-	Push(S,3);
-	Push(S,2);
-	Push(S,1);
-	Push(S,0);
-	Push(S,-1);
-	Push(S,-2);
-	int a;
-	for(int i=0;i<15;i++){
-		a = Pop(S);
-		if(a)
-			printf("Pop %d\n",a);
-	}
-}
 
 void main(){
 	struct Queue *Q=queueDef(20);	
