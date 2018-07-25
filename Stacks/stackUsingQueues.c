@@ -76,7 +76,7 @@ int isQueueEmptyTot(struct Queue *Q){
 }
 
 int isQueueEmpty(struct Queue *Q){
-	return (Q->front=Q->rear);
+	return (Q->front==Q->rear);
 }
 
 int isQueueFull(struct Queue *Q){
@@ -130,8 +130,19 @@ void main(){
 	struct Stack *S=createStack(20);	
 	Push(S,9);
 	Push(S,8);
-	int a;
-	for(int i=0;i<2;i++){
+	Push(S,19);
+	Push(S,18);
+	Push(S,1);
+	Push(S,2);
+	Push(S,3);
+	Push(S,4);
+	for(int i=0;i<5;i++){
+		Pop(S);
+	}
+	Push(S,6);
+	Push(S,7);
+	Push(S,5);
+	for(int i=0;i<5;i++){
 		Pop(S);
 	}
 }
