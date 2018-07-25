@@ -93,13 +93,16 @@ void Push(struct Stack *S,int data){
 	enQueue(S->queue1,data);
 }
 
-int Pop(struct Stack *S){
+void Pop(struct Stack *S){
 	int qData;
 	while(!isQueueEmpty(S->queue1)){
 		qData=deQueue(S->queue1);
 		enQueue(S->queue2,qData);	
 	}
-	return deQueue(S->queue1);
+	printf("Pop %d\n",deQueue(S->queue1));
+	struct Queue *temp=S->queue1;
+	S->queue1=S->queue2;
+	S->queue2=temp;
 }
 
 void deleteStack(struct Stack *S){
@@ -118,25 +121,18 @@ void deleteQueue(struct Queue *Q){
 		
 }
 
+/*
+Pop 8
+Pop 0
+*/
+
 void main(){
 	struct Stack *S=createStack(20);	
 	Push(S,9);
 	Push(S,8);
-	Push(S,7);
-	Push(S,6);
-	Push(S,5);
-	Push(S,4);
-	Push(S,3);
-	Push(S,2);
-	Push(S,1);
-	Push(S,0);
-	Push(S,-1);
-	Push(S,-2);
 	int a;
-	for(int i=0;i<8;i++){
-		a = Pop(S);
-		if(a)
-			printf("Pop %d\n",a);
+	for(int i=0;i<2;i++){
+		Pop(S);
 	}
 }
 
