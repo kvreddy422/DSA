@@ -75,7 +75,7 @@ int isQueueEmptyTot(struct Queue *Q){
 	return (Q->front == -1);
 }
 
-int isQueueEmpty(struct Queue *Q){
+int isQueueEmpty(struct Queue *Q){ // added to check if only one elemenet is remaining
 	return (Q->front==Q->rear);
 }
 
@@ -86,23 +86,23 @@ int isQueueFull(struct Queue *Q){
 
 void Push(struct Stack *S,int data){
 	int qData;
-	while(!isQueueEmptyTot(S->queue2)){
-		qData=deQueue(S->queue2);
-		enQueue(S->queue1,qData);	
+	while(!isQueueEmptyTot(S->queue2)){ 
+		qData=deQueue(S->queue2); // Make queue2 empty
+		enQueue(S->queue1,qData); // add it to queue1	
 	}
-	enQueue(S->queue1,data);
+	enQueue(S->queue1,data); // add the new element to queue1
 }
 
 void Pop(struct Stack *S){
 	int qData;
-	while(!isQueueEmpty(S->queue1)){
+	while(!isQueueEmpty(S->queue1)){ // make q1 empty except the last element
 		qData=deQueue(S->queue1);
 		enQueue(S->queue2,qData);	
 	}
-	printf("Pop %d\n",deQueue(S->queue1));
+	printf("Pop %d\n",deQueue(S->queue1));// print the last element left
 	struct Queue *temp=S->queue1;
 	S->queue1=S->queue2;
-	S->queue2=temp;
+	S->queue2=temp; // swap queue1 with queue2 and viceversa
 }
 
 void deleteStack(struct Stack *S){
