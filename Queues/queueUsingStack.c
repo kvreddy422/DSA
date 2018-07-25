@@ -113,7 +113,23 @@ void deleteStack(struct Stack *S){
 		free(S);
 }
 
-
+/*
+Dequeue 9
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+Queue is EmptyDequeue 0
+*/
 void main(){
 	struct Queue *Q=queueDef(20);	
 	enQueue(Q,9);
