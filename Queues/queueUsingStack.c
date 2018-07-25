@@ -47,6 +47,32 @@ struct Queue *queueDef(int size){
 	Q->stack2=createStack(size);
 }
 
+int stackIsFull(struct Stack *S){
+	return (S->top+1==S->capacity);
+}
+
+int stackIsEmpty(struct Stack *S){
+	return (S->top==-1);
+}
+
+void Push(struct Stack *S,int data){
+	if(stackIsFull(S)){
+		printf("Stack is Full\n");
+		return;
+	}
+	S->top++;
+	S->array[S->top]=data;
+}
+
+int Pop(struct Stack *S){
+	if(stackIsEmpty(S)){
+		printf("Stack is Empty\n");
+		return 0;	
+	}
+	return S->array[S->top--];
+}
+
+
 void enQueue(struct Queue *Q, int data){
 	if(stackIsFull(Q->stack1))
 		printf("Queue is FUll\n");
@@ -80,31 +106,6 @@ void deleteQueue(struct Queue *Q){
 	if(Q)
 		free(Q);
 		
-}
-
-int stackIsFull(struct Stack *S){
-	return (S->top+1==S->capacity);
-}
-
-int stackIsEmpty(struct Stack *S){
-	return (S->top==-1);
-}
-
-void Push(struct Stack *S,int data){
-	if(stackIsFull(S)){
-		printf("Stack is Full\n");
-		return;
-	}
-	S->top++;
-	S->array[S->top]=data;
-}
-
-int Pop(struct Stack *S){
-	if(stackIsEmpty(S)){
-		printf("Stack is Empty\n");
-		return 0;	
-	}
-	return S->array[S->top--];
 }
 
 void deleteStack(struct Stack *S){
