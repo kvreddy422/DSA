@@ -3,7 +3,7 @@
 E1 Q1->1 ;Q2->
 E2 Q1->2-1 ;Q2->
 E3 Q1->3-2-1 ;Q2
-D Q1-> Q2->1-2-3; Q2->1-2
+D Q1-> Q2->1-2-3; Q2->1-2 3
 D Q1-> Q2->1
 E4 Q1->4-1
 E5 Q1->5-4-1
@@ -71,8 +71,12 @@ int deQueue(struct Queue *Q){
 	return data;
 }
 
-int isQueueEmpty(struct Queue *Q){
+int isQueueEmptyTot(struct Queue *Q){
 	return (Q->front == -1);
+}
+
+int isQueueEmpty(struct Queue *Q){
+	return ((Q->rear-1)%Q->capacity == Q->front);
 }
 
 int isQueueFull(struct Queue *Q){
@@ -82,7 +86,7 @@ int isQueueFull(struct Queue *Q){
 
 void Push(struct Stack *S,int data){
 	int qData;
-	while(!isQueueEmpty(S->queue2)){
+	while(!isQueueEmptyTot(S->queue2)){
 		qData=deQueue(S->queue2);
 		enQueue(S->queue1,qData);	
 	}
@@ -95,7 +99,7 @@ int Pop(struct Stack *S){
 		qData=deQueue(S->queue1);
 		enQueue(S->queue2,qData);	
 	}
-	return deQueue(S->queue2);
+	return deQueue(S->queue1);
 }
 
 void deleteStack(struct Stack *S){
