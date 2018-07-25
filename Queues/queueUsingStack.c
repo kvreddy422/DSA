@@ -27,14 +27,6 @@ struct Stack{
 	int *array;	
 };
 
-struct Queue *queueDef(int size){
-	struct Queue *Q = malloc(sizeof(struct Queue));
-	if(!Q)
-		return NULL;
-	Q->stack1=createStack(size);
-	Q->stack2=createStack(size);
-}
-
 struct Stack *createStack(int size){
 	struct Stack *S=malloc(sizeof(struct Stack));
 	if(!S)
@@ -47,13 +39,21 @@ struct Stack *createStack(int size){
 	return S;
 }
 
+struct Queue *queueDef(int size){
+	struct Queue *Q = malloc(sizeof(struct Queue));
+	if(!Q)
+		return NULL;
+	Q->stack1=createStack(size);
+	Q->stack2=createStack(size);
+}
+
 void enQueue(struct Queue *Q, int data){
 	if(stackIsFull(Q->stack1))
 		printf("Queue is FUll\n");
 	else{
 		int sData;
 		while(!stackIsEmpty(Q->stack2)){
-			s=Pop(Q->stack2);
+			sData=Pop(Q->stack2);
 			Push(Q->stack1,sData);
 		}
 		Push(Q->stack1,data);
