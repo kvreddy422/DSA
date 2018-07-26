@@ -111,7 +111,23 @@ void printGraph(struct Graph *G){
 	
 	}
 } 
+/*
+BFS.c: In function ‘enQueue’:
+BFS.c:49:20: error: incompatible types when assigning to type ‘struct node’ from type ‘struct node *’
+   Q->array[Q->rear]=N;
+                    ^
+BFS.c: In function ‘deQueue’:
+BFS.c:60:3: error: incompatible types when assigning to type ‘struct node *’ from type ‘struct node’
+  N=Q->array[Q->front];
+   ^
+BFS.c:65:9: warning: return makes integer from pointer without a cast [-Wint-conversion]
+  return N;
+         ^
+BFS.c: In function ‘BFS’:
+BFS.c:121:20: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+   struct node *N = deQueue(Q);
 
+*/
 void BFS(struct Graph *G,int vertex){
 	struct Queue *Q = queueDef(10);
 	enQueue(Q,G->adjLists[vertex]);
