@@ -112,20 +112,22 @@ void printGraph(struct Graph *G){
 	}
 } 
 /*
-BFS.c: In function ‘enQueue’:
-BFS.c:49:20: error: incompatible types when assigning to type ‘struct node’ from type ‘struct node *’
-   Q->array[Q->rear]=N;
-                    ^
-BFS.c: In function ‘deQueue’:
-BFS.c:60:3: error: incompatible types when assigning to type ‘struct node *’ from type ‘struct node’
-  N=Q->array[Q->front];
-   ^
-BFS.c:65:9: warning: return makes integer from pointer without a cast [-Wint-conversion]
-  return N;
-         ^
-BFS.c: In function ‘BFS’:
-BFS.c:121:20: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
-   struct node *N = deQueue(Q);
+Adjacency list of vertex 0
+ 1 -> 
+
+ Adjacency list of vertex 1
+ 4 -> 2 -> 0 -> 
+
+ Adjacency list of vertex 2
+ 3 -> 1 -> 
+
+ Adjacency list of vertex 3
+ 4 -> 2 -> 
+
+ Adjacency list of vertex 4
+ 1 -> 3 -> 
+Visited 1 
+Visited 4
 
 */
 void BFS(struct Graph *G,int vertex){
@@ -135,9 +137,11 @@ void BFS(struct Graph *G,int vertex){
 	printf("Visited %d \n", vertex);
 	while(!isQueueEmpty(Q)){
 		struct node *N = deQueue(Q);
-		while(N->next){ // Very Bad; U didn't understand what adjLists is all about :( ; "Sometimes great ppl are hopeless"
+		printf("Visited %d \n", N->vertex);
+		G->visited[N->vertex]=1;
+		while(N){ // Very Bad; U didn't understand what adjLists is all about :( ; "Sometimes great ppl are hopeless"
 			if(G->visited[N->vertex]==0){
-				enQueue(Q,N->next);
+				enQueue(Q,N);
 				N=N->next;
 			}
 		}	
