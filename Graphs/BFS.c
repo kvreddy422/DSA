@@ -18,7 +18,7 @@ struct Graph{
 struct Queue{
 	int front, rear;
 	int capacity;
-	struct node *array;
+	struct node **array;
 };
 
 struct Queue *queueDef(int size){
@@ -52,10 +52,10 @@ void enQueue(struct Queue *Q, struct node *N){
 	}
 }
 
-int deQueue(struct Queue *Q){
+struct node* deQueue(struct Queue *Q){
 	struct node *N;
 	if(isQueueEmpty(Q)){
-		return 0;	
+		return NULL;	
 	}
 	N=Q->array[Q->front];
 	if(Q->front == Q->rear)
@@ -135,9 +135,11 @@ void BFS(struct Graph *G,int vertex){
 	printf("Visited %d \n", vertex);
 	while(!isQueueEmpty(Q)){
 		struct node *N = deQueue(Q);
-		while(N->next){
-			enQueue(Q,N->next);
-			N=N->next;
+		while(N->next){ // Very Bad; U didn't understand what adjLists is all about :( ; "Sometimes great ppl are hopeless"
+			if(G->visited[N->vertex]==0){
+				enQueue(Q,N->next);
+				N=N->next;
+			}
 		}	
 	}
 }
@@ -150,5 +152,5 @@ void main(){
 	addEdge(G,4,1);
 	
 	printGraph(G);
-	BFS(G,2);
+	BFS(G,1);
 }
