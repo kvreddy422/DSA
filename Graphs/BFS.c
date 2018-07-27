@@ -121,7 +121,9 @@ void BFS(struct Graph *G,int vertex){
 	printf("Visited %d \n",vertex);
 	struct node *N = deQueue(Q);
 	printf("Visited %d \n", N->vertex);
-	while(!isQueueEmpty(Q)){
+	int i=0;
+	while(!isQueueEmpty(Q) || i==0){
+		i=1;
 		while(N){
 			if(G->visited[N->vertex]==0){
 				enQueue(Q,N);
