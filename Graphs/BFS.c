@@ -127,12 +127,11 @@ void printGraph(struct Graph *G){
  Adjacency list of vertex 4
  1 -> 3 -> 
 Visited 0 
+Visited 1 
 Visited 4 
 Visited 2 
 Visited 1 
 Visited 3 
-[Inferior 1 (process 8380) exited with code 01]
-
 
 */
 void BFS(struct Graph *G,int vertex){
@@ -143,11 +142,11 @@ void BFS(struct Graph *G,int vertex){
 	printf("Visited %d \n",vertex);
 	while(!isQueueEmpty(Q)){
 		struct node *N = deQueue(Q);
+		printf("Visited %d \n", N->vertex);
 		N=G->adjLists[N->vertex];
 		while(N){
 			if(G->visited[N->vertex]==0){
 				enQueue(Q,N);
-				printf("Visited %d \n", N->vertex);
 				G->visited[N->vertex]=1;
 			}
 			N=N->next; // Need to be outside? Why -> there might be some elements in the AdjLists of a particular node that are already visited; we just need to pass through without storing 					      them in queue
