@@ -18,7 +18,7 @@ struct Graph{
 struct Queue{
 	int front, rear;
 	int capacity;
-	struct node **array;
+	int *array;
 };
 
 struct Queue *queueDef(int size){
@@ -27,7 +27,7 @@ struct Queue *queueDef(int size){
 		return NULL;
 	Q->front=Q->rear=-1;
 	Q->capacity=size;
-	Q->array=malloc(Q->capacity*sizeof(struct node));
+	Q->array=malloc(Q->capacity*sizeof(int));
 	if(!Q->array)
 		return NULL;
 	return Q;
@@ -41,7 +41,7 @@ int isQueueFull(struct Queue *Q){
 	return ((Q->rear+1)%Q->capacity == Q->front);
 }
 
-void enQueue(struct Queue *Q, struct node *N){
+void enQueue(struct Queue *Q, int N){
 	if(isQueueFull(Q))
 		printf("Queue is FUll\n");
 	else{
@@ -52,10 +52,10 @@ void enQueue(struct Queue *Q, struct node *N){
 	}
 }
 
-struct node* deQueue(struct Queue *Q){
-	struct node *N;
+int deQueue(struct Queue *Q){
+	int N;
 	if(isQueueEmpty(Q)){
-		return NULL;	
+		return 0;	
 	}
 	N=Q->array[Q->front];
 	if(Q->front == Q->rear)
@@ -113,6 +113,23 @@ void printGraph(struct Graph *G){
 } 
 
 void BFS(struct Graph *G,int vertex){
+	printf("Visited %d \n", vertex);
+	struct Queue *Q = queueDef(10);
+	enQueue(Q,vertex);
+	G->visited[vertex]=1;
+	while(!isQueueEmpty(Q)){
+		int vertexNew = deQueue(Q);
+		struct node *N = G->adjLists[vertexNew];
+		while(N){
+			if(G->visited[N->vertex]==0){
+				enQueue(Q,N->vertex);
+				printf("Visited %d \n",N->vertex);
+				G->visited[N->vertex]=1;
+			}
+			N=N->next;
+		} 	
+	}
+	
 	
 }
 void main(){
