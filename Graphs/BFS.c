@@ -111,7 +111,14 @@ void printGraph(struct Graph *G){
 	
 	}
 } 
-
+/*
+Complexity check
+enQueue(Q,vertex);  takes -> O(1)
+the outer while loop will have all the vertics - so O(V)
+the inner loop can loop through V-1 times so O(V*(V-1))
+but this is never the case - if innner loop is V-1 outer reduces to 1 - so its O(V-1)
+worst case might be O(V*V) but it is very less than that around O(V+E)
+*/
 void BFS(struct Graph *G,int vertex){
 	printf("Visited %d \n", vertex); // Print the given node
 	struct Queue *Q = queueDef(10);
