@@ -160,5 +160,5 @@ void main(){
 	addEdge(G,4,1);
 	
 	printGraph(G);
-	BFS(G,1);
+	BFS(G,0);
 }
