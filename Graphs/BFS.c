@@ -112,7 +112,7 @@ void printGraph(struct Graph *G){
 	}
 } 
 /*
- Adjacency list of vertex 0
+Adjacency list of vertex 0
  1 -> 
 
  Adjacency list of vertex 1
@@ -127,19 +127,21 @@ void printGraph(struct Graph *G){
  Adjacency list of vertex 4
  1 -> 3 -> 
 Visited 1 
-Visited 4 
-Visited 4 
-Visited 2 
-Visited 0 
-[Inferior 1 (process 6513) exited with code 01]
-
+Visited 4
 
 */
 void BFS(struct Graph *G,int vertex){
 	struct Queue *Q = queueDef(10);
-	enQueue(Q,G->adjLists[vertex]);
+	struct node *present = G->adjLists[vertex];
+	present = G->adjLists[present->vertex];	
+	while(present){
+		if(present->vertex==vertex)
+			break;
+		else
+			present=present->next;	
+	}
+	enQueue(Q,present);
 	G->visited[vertex]=1;
-	printf("Visited %d \n", vertex);
 	while(!isQueueEmpty(Q)){
 		struct node *N = deQueue(Q);
 		printf("Visited %d \n", N->vertex);
