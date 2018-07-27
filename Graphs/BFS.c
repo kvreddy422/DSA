@@ -113,25 +113,26 @@ void printGraph(struct Graph *G){
 } 
 
 void BFS(struct Graph *G,int vertex){
-	printf("Visited %d \n", vertex);
+	printf("Visited %d \n", vertex); // Print the given node
 	struct Queue *Q = queueDef(10);
-	enQueue(Q,vertex);
-	G->visited[vertex]=1;
-	while(!isQueueEmpty(Q)){
-		int vertexNew = deQueue(Q);
-		struct node *N = G->adjLists[vertexNew];
-		while(N){
-			if(G->visited[N->vertex]==0){
-				enQueue(Q,N->vertex);
-				printf("Visited %d \n",N->vertex);
-				G->visited[N->vertex]=1;
+	enQueue(Q,vertex); 
+	G->visited[vertex]=1; // mark the node as visited
+	while(!isQueueEmpty(Q)){ // loop until the queue is empty
+		int vertexNew = deQueue(Q); // get the enqueued node
+		struct node *N = G->adjLists[vertexNew]; // get the ajacent of it ; basically the breath first
+		while(N){ // now using adjacent list loop till u complete all the adajent nodes
+			if(G->visited[N->vertex]==0){ // check for unvisited nodes in the graph
+				enQueue(Q,N->vertex); // if found put it in the queue 
+				printf("Visited %d \n",N->vertex); 
+				G->visited[N->vertex]=1; // assign the node as a visited one
 			}
-			N=N->next;
+			N=N->next; // loop throught the adjLists
 		} 	
 	}
 	
 	
 }
+
 void main(){
 	struct Graph *G = createGraph(5);
 	addEdge(G,0,1);
@@ -141,5 +142,5 @@ void main(){
 	addEdge(G,4,1);
 	
 	printGraph(G);
-	BFS(G,1);
+	BFS(G,2);
 }
