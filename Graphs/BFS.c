@@ -113,28 +113,7 @@ void printGraph(struct Graph *G){
 } 
 
 void BFS(struct Graph *G,int vertex){
-	struct Queue *Q = queueDef(10);
-	struct node *present = G->adjLists[vertex];
-	enQueue(Q,present);
-	G->visited[vertex]=1;
-	G->visited[present->vertex]=1;
-	printf("Visited %d \n",vertex);
-	struct node *N = deQueue(Q);
-	printf("Visited %d \n", N->vertex);
-	int i=0;
-	while(!isQueueEmpty(Q) || i==0){
-		i=1;
-		while(N){
-			if(G->visited[N->vertex]==0){
-				enQueue(Q,N);
-				G->visited[N->vertex]=1;
-			}
-			N=N->next; // Need to be outside? Why -> there might be some elements in the AdjLists of a particular node that are already visited; we just need to pass through without storing 					      them in queue
-		}
-		struct node *N = deQueue(Q);
-		printf("Visited %d \n", N->vertex);
-		N=G->adjLists[N->vertex];	
-	}
+	
 }
 void main(){
 	struct Graph *G = createGraph(5);
