@@ -139,6 +139,7 @@ void BFS(struct Graph *G,int vertex){
 	struct node *present = G->adjLists[vertex];
 	enQueue(Q,present);
 	G->visited[vertex]=1;
+	G->visited[present->vertex]=1;
 	printf("Visited %d \n",vertex);
 	while(!isQueueEmpty(Q)){
 		struct node *N = deQueue(Q);
